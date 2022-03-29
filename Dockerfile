@@ -8,6 +8,8 @@ RUN apt-get -qqy update \
         sudo \
         supervisor \
         xvfb x11vnc novnc websockify \
+        zip \
+        unzip \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
@@ -42,7 +44,10 @@ RUN apt-get -qqy update \
     && wget https://download.foldingathome.org/releases/public/release/fahclient/debian-stable-64bit/v7.6/fahclient_7.6.21_amd64.deb \
     && apt install -qqy --no-install-recommends ./google-chrome-stable_current_amd64.deb \
     && dpkg --configure -a \
-    && apt install -qqy --no-install-recommends ./fahclient_7.6.21_amd64.deb \
+    && ar vx fahcontrol_7.6.21-1_all.deb \
+    && tar xvf control.tar.xz \
+    && tar xvf data.tar.xz \
+    && apt install -f -qqy --no-install-recommends ./fahclient_7.6.21_amd64.deb \
     && apt-add-repository ppa:remmina-ppa-team/remmina-next \
     && apt update \
     && apt install -qqy --no-install-recommends remmina remmina-plugin-rdp remmina-plugin-secret \
