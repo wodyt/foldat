@@ -41,7 +41,6 @@ RUN apt-get -qqy update \
     && apt-get -qqy --no-install-recommends install \
         firefox htop terminator gnupg2 software-properties-common \
     && wget https://download.foldingathome.org/releases/public/release/fahclient/debian-stable-64bit/v7.6/fahclient_7.6.21_amd64.deb \
-    && dpkg --configure -a \
     && ar vx fahclient_7.6.21_amd64.deb \
     && tar xvf control.tar.xz \
     && tar xvf data.tar.xz \
