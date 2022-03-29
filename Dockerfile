@@ -41,7 +41,7 @@ RUN apt-get -qqy update \
     && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
     && wget https://download.foldingathome.org/releases/public/release/fahclient/debian-stable-64bit/v7.6/fahclient_7.6.21_amd64.deb \
     && apt install -qqy --no-install-recommends ./google-chrome-stable_current_amd64.deb \
-    && dpkg --configure -a
+    && dpkg --configure -a \
     && apt install -qqy --no-install-recommends ./fahclient_7.6.21_amd64.deb \
     && apt-add-repository ppa:remmina-ppa-team/remmina-next \
     && apt update \
