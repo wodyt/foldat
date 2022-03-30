@@ -46,6 +46,12 @@ RUN apt-get -qqy update \
     && apt install -qqy --no-install-recommends ./fahclient_7.6.21_amd64.deb \
     && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
     && apt install -qqy --no-install-recommends ./google-chrome-stable_current_amd64.deb \
+    && add-apt-repository ppa:remmina-ppa-team/remmina-next \
+    && apt update \
+    && apt install -qqy --no-install-recommends remmina remmina-plugin-rdp remmina-plugin-secret \
+    && apt-add-repository ppa:obsproject/obs-studio \
+    && apt update \
+    && apt install -qqy --no-install-recommends obs-studio \
 
     && apt install unzip \
     && apt-get autoclean \
