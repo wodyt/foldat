@@ -30,6 +30,7 @@ RUN adduser yanz
 RUN gpasswd -a yanz sudo
 RUN echo yanz:123456|chpasswd
 RUN su - yanz
+RUN vncserver
 
 
 COPY scripts/* /opt/bin/
