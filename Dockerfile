@@ -9,7 +9,7 @@ RUN apt-get -qqy update \
         xfce4-goodies \
         gnom-icon-theme \
         tightvncserver \
-        iceweasel \
+
         sudo \
         supervisor \
         xvfb x11vnc novnc websockify \
