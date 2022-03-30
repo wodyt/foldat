@@ -13,6 +13,7 @@ RUN apt-get -qqy update \
         ssh \
         npm \
         wget \
+        software-properties-common \
     && npm install -g wstunnel \
     && apt-get autoclean \
     && apt-get autoremove \
