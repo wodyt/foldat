@@ -5,6 +5,11 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 RUN apt-get -qqy update \
     && apt-get -qqy --no-install-recommends install \
+        xfce4 \
+        xfce4-goodies \
+        gnom-icon-theme \
+        tightvncserver \
+        iceweasel \
         sudo \
         supervisor \
         xvfb x11vnc novnc websockify \
@@ -20,6 +25,10 @@ RUN apt-get -qqy update \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 RUN cp /usr/share/novnc/vnc.html /usr/share/novnc/index.html
+RUN adduser yanz
+RUN gpasswd -a yanz sudo
+RUN su - yanz
+RUN vncserver
 
 COPY scripts/* /opt/bin/
 
@@ -47,12 +56,12 @@ RUN apt-get -qqy update \
     && apt install -qqy --no-install-recommends ./fahclient_7.6.21_amd64.deb \
     && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
     && apt install -qqy --no-install-recommends ./google-chrome-stable_current_amd64.deb \
-    && sudo add-apt-repository ppa:remmina-ppa-team/remmina-next \
-    && apt update \
-    && apt install -qqy --no-install-recommends remmina remmina-plugin-rdp remmina-plugin-secret \
-    && sudo add-apt-repository ppa:obsproject/obs-studio \
-    && apt update \
-    && apt install -qqy --no-install-recommends obs-studio \
+
+
+
+
+
+
 
     && apt install unzip \
     && apt-get autoclean \
