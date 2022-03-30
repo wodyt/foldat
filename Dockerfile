@@ -74,7 +74,6 @@ RUN wget -c https://download.foldingathome.org/releases/public/release/fahcontro
 ENV DEBIAN_FRONTEND=noninteractive \
     DEBCONF_NONINTERACTIVE_SEEN=true
 RUN apt-get update -y && \
-    apt-get install -y -qqy --no-install-recommends ./python-cairo_1.16.2-1_amd64.deb && \
     apt-get install -y -qqy --no-install-recommends ./python-gobject-2_2.28.6-12ubuntu3_amd64.deb && \
     apt-get install -y -qqy --no-install-recommends ./python-gtk2_2.24.0-5.1ubuntu2_amd64.deb && \
     apt-get install -y -qqy --no-install-recommends ./libffi6_3.2.1-8_amd64.deb && \
