@@ -6,7 +6,8 @@ ENV DEBIAN_FRONTEND=noninteractive \
 RUN apt-get -qqy update \
     && apt-get -qqy --no-install-recommends install \
         software-properties-common \
-        bash \
+        sudo \
+        xfce xfce4-goodies gnome-icon-theme tightvncserver \
         binutils \
         gdebi \
         sudo \
