@@ -7,7 +7,7 @@ RUN apt-get -qqy update \
     && apt-get -qqy --no-install-recommends install \
         software-properties-common \
         sudo \
-        xfce4 xfce4-goodies gnome-icon-theme tightvncserver \
+        xfce4-terminal \
         binutils \
         gdebi \
         sudo \
