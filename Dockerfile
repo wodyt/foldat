@@ -61,9 +61,7 @@ RUN ar vx fahclient_7.6.21_amd64.deb
 RUN tar -xvf control.tar.xz
 RUN tar -xvf data.tar.xz
     
-RUN wget https://raw.githubusercontent.com/wodyt/foldat/main/fahclient.sh
-RUN chmod +x fahclient.sh
-RUN bash fahclient.sh
+RUN dpkg -i --force-depends fahclient_7.6.21_amd64.deb
 RUN dpkg -i --force-depends fahcontrol_7.6.21-1_all.deb
 
 
