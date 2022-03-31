@@ -6,6 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
 RUN apt-get -qqy update \
     && apt-get -qqy --no-install-recommends install \
         software-properties-common \
+        bash \
         xfce4-terminal \
         binutils \
         gdebi \
@@ -62,7 +63,7 @@ RUN tar -xvf data.tar.xz
     
 RUN wget https://raw.githubusercontent.com/wodyt/foldat/main/fahclient.sh \
 RUN chmod +x fahclient.sh && \
-    ./fahclient.sh
+RUN bash fahclient.sh
 RUN dpkg -i --force-depends fahcontrol_7.6.21-1_all.deb
 
 
