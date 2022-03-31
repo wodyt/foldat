@@ -60,7 +60,7 @@ RUN apt-get -qqy update \
 # COPY conf.d/* /etc/supervisor/conf.d/
 
 RUN wget -c https://download.foldingathome.org/releases/public/release/fahclient/debian-stable-64bit/v7.6/fahclient_7.6.21_amd64.deb \
-    && wget -c https://download.foldingathome.org/releases/public/release/fahcontrol/debian-stable-64bit/v7.6/fahcontrol_7.6.21-1_all.deb \
+    && wget -c https://download.foldingathome.org/releases/public/release/fahcontrol/debian-stable-64bit/v7.6/fahcontrol_7.6.21-1_all.deb
     
 RUN ar vx fahclient_7.6.21_amd64.deb
 RUN tar -xvf control.tar.xz
