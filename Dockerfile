@@ -1,35 +1,25 @@
-FROM ubuntu as ubuntu-base
+FROM ubuntu:18.04 as ubuntu-base
 
 ENV DEBIAN_FRONTEND=noninteractive \
     DEBCONF_NONINTERACTIVE_SEEN=true
 
 RUN apt-get -qqy update \
     && apt-get -qqy --no-install-recommends install \
-        xfce4 xfce4-goodies gnome-icon-theme tightvncserver \
-        python \
-        python2 \
+        gdebi \
         sudo \
-        supervisor \
-        xvfb x11vnc novnc websockify \
+        xz-utils \
+        bzip2 \
         zip \
         unzip \
-        ssh \
-        npm \
-        wget \
-        software-properties-common \
-    && npm install -g wstunnel \
+        nano \
+        python-gtk2 \
+        supervisor \
+        xvfb x11vnc novnc websockify \
     && apt-get autoclean \
     && apt-get autoremove \
-    && rm -rf /var/lib/apt/lists/* /var/cache/apt/*   
-
+    && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 RUN cp /usr/share/novnc/vnc.html /usr/share/novnc/index.html
-RUN adduser yanz
-
-RUN gpasswd -a yanz sudo
-RUN echo yanz:123456|chpasswd
-RUN su - yanz
-
 
 COPY scripts/* /opt/bin/
 
@@ -53,34 +43,30 @@ CMD ["/opt/bin/entry_point.sh"]
 FROM ubuntu-base as ubuntu-utilities
 
 RUN apt-get -qqy update \
+    && wget --no-check-certificate https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
+    && apt install -qqy --no-install-recommends ./google-chrome-stable_current_amd64.deb \
+    && apt-add-repository ppa:remmina-ppa-team/remmina-next \
+    && apt update \
+    && apt install -qqy --no-install-recommends remmina remmina-plugin-rdp remmina-plugin-secret \
+    && apt-add-repository ppa:obsproject/obs-studio \
+    && apt update \
+    && apt install -qqy --no-install-recommends obs-studio \
     && apt install unzip \
-    && dpkg --configure -a \
-    && wget https://download.foldingathome.org/releases/public/release/fahviewer/debian-stable-64bit/v7.6/fahviewer_7.6.21_amd64.deb \
-    && apt install -qqy --no-install-recommends ./fahviewer_7.6.21_amd64.deb \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
-RUN wget -c https://download.foldingathome.org/releases/public/release/fahcontrol/debian-stable-64bit/v7.6/fahcontrol_7.6.21-1_all.deb \
-    && wget -c http://archive.ubuntu.com/ubuntu/pool/main/p/pycairo/python-cairo_1.16.2-1_amd64.deb \
-    && wget -c http://archive.ubuntu.com/ubuntu/pool/universe/p/pygobject-2/python-gobject-2_2.28.6-12ubuntu3_amd64.deb \
-    && wget -c http://archive.ubuntu.com/ubuntu/pool/universe/p/pygtk/python-gtk2_2.24.0-5.1ubuntu2_amd64.deb \
-    && wget -c http://archive.ubuntu.com/ubuntu/pool/main/libf/libffi/libffi6_3.2.1-8_amd64.deb \
-    && wget https://download.foldingathome.org/releases/public/release/fahclient/debian-stable-64bit/v7.6/fahclient_7.6.21_amd64.deb
-    
-    
-ENV DEBIAN_FRONTEND=noninteractive \
-    DEBCONF_NONINTERACTIVE_SEEN=true
-RUN apt-get update -y && \
-    apt-get install -y -qqy --no-install-recommends ./python-gobject-2_2.28.6-12ubuntu3_amd64.deb && \
-    apt-get install -y -qqy --no-install-recommends ./python-gtk2_2.24.0-5.1ubuntu2_amd64.deb && \
-    apt-get install -y -qqy --no-install-recommends ./libffi6_3.2.1-8_amd64.deb && \
-    apt-get install -y -qqy --no-install-recommends ./fahcontrol_7.6.21-1_all.deb && \
-    apt-get install -qqy --no-install-recommends ./fahclient_7.6.21_amd64.deb
-
-
-
 # COPY conf.d/* /etc/supervisor/conf.d/
+
+RUN wget -c https://download.foldingathome.org/releases/public/release/fahclient/debian-stable-64bit/v7.6/fahclient_7.6.21_amd64.deb \
+    && wget -c https://download.foldingathome.org/releases/public/release/fahcontrol/debian-stable-64bit/v7.6/fahcontrol_7.6.21-1_all.deb \
+    
+RUN ar vx fahclient_7.6.21_amd64.deb
+RUN tar -xvf control.tar.xz
+RUN tar -xvf data.tar.xz
+    
+RUN dpkg -i --force-depends fahclient_7.6.21_amd64.deb
+RUN dpkg -i --force-depends fahcontrol_7.6.21-1_all.deb
 
 
 #============================
