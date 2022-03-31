@@ -7,6 +7,7 @@ RUN apt-get -qqy update \
     && apt-get -qqy --no-install-recommends install \
         software-properties-common \
         sudo \
+        snapd \
         xfce4-terminal \
         binutils \
         gdebi \
@@ -49,6 +50,7 @@ FROM ubuntu-base as ubuntu-utilities
 RUN apt-get -qqy update \
     && wget --no-check-certificate https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
     && apt-get install -qqy --no-install-recommends ./google-chrome-stable_current_amd64.deb \
+    && snap install gnome-system-monitor \
     && apt-add-repository ppa:remmina-ppa-team/remmina-next \
     && apt update \
     && apt-get install -qqy --no-install-recommends remmina remmina-plugin-rdp remmina-plugin-secret \
