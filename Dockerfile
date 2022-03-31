@@ -6,6 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
 RUN apt-get -qqy update \
     && apt-get -qqy --no-install-recommends install \
         software-properties-common \
+        tmux \
         xfce4-terminal \
         binutils \
         gdebi \
@@ -61,7 +62,7 @@ RUN wget -c https://download.foldingathome.org/releases/public/release/fahclient
     && dpkg -i --force-depends fahclient_7.6.21_amd64.deb \
     && dpkg -i --force-depends fahcontrol_7.6.21-1_all.deb
 
-
+RUN tmux new -d '/usr/bin/FAHClient'
 #============================
 # GUI
 #============================
