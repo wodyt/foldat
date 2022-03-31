@@ -6,7 +6,6 @@ ENV DEBIAN_FRONTEND=noninteractive \
 RUN apt-get -qqy update \
     && apt-get -qqy --no-install-recommends install \
         software-properties-common \
-        tmux \
         xfce4-terminal \
         binutils \
         gdebi \
@@ -47,7 +46,6 @@ RUN apt-get -qqy update \
     && apt-add-repository ppa:remmina-ppa-team/remmina-next \
     && apt update \
     && apt-get install -qqy --no-install-recommends remmina remmina-plugin-rdp remmina-plugin-secret \
-    && apt-get install unzip \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
@@ -62,14 +60,14 @@ RUN wget -c https://download.foldingathome.org/releases/public/release/fahclient
     && dpkg -i --force-depends fahclient_7.6.21_amd64.deb \
     && dpkg -i --force-depends fahcontrol_7.6.21-1_all.deb
 
-RUN tmux new -d '/usr/bin/FAHClient'
+
 #============================
 # GUI
 #============================
 FROM ubuntu-utilities as ubuntu-ui
 
 ENV SCREEN_WIDTH=1280 \
-    SCREEN_HEIGHT=640 \
+    SCREEN_HEIGHT=600 \
     SCREEN_DEPTH=24 \
     SCREEN_DPI=96 \
     DISPLAY=:99 \
