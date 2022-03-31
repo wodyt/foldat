@@ -6,7 +6,6 @@ ENV DEBIAN_FRONTEND=noninteractive \
 RUN apt-get -qqy update \
     && apt-get -qqy --no-install-recommends install \
         software-properties-common \
-        bash \
         xfce4-terminal \
         binutils \
         gdebi \
@@ -71,7 +70,7 @@ RUN dpkg -i --force-depends fahcontrol_7.6.21-1_all.deb
 FROM ubuntu-utilities as ubuntu-ui
 
 ENV SCREEN_WIDTH=1280 \
-    SCREEN_HEIGHT=720 \
+    SCREEN_HEIGHT=640 \
     SCREEN_DEPTH=24 \
     SCREEN_DPI=96 \
     DISPLAY=:99 \
