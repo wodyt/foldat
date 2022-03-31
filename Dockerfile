@@ -5,6 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 RUN apt-get -qqy update \
     && apt-get -qqy --no-install-recommends install \
+        software-properties-common \
         gdebi \
         sudo \
         xz-utils \
