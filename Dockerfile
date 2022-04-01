@@ -6,6 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
 RUN apt-get -qqy update \
     && apt-get -qqy --no-install-recommends install \
         software-properties-common \
+        gnome-system-monitor \
         xfce4-terminal \
         binutils \
         gdebi \
@@ -45,11 +46,8 @@ RUN apt-get -qqy update \
     && apt-get install -qqy --no-install-recommends ./google-chrome-stable_current_amd64.deb \
     && apt-get autoclean \
     && apt-get autoremove \
-    && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
-
-# COPY conf.d/* /etc/supervisor/conf.d/
-
-RUN wget -c https://download.foldingathome.org/releases/public/release/fahclient/debian-stable-64bit/v7.6/fahclient_7.6.21_amd64.deb \
+    && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
+    && wget -c https://download.foldingathome.org/releases/public/release/fahclient/debian-stable-64bit/v7.6/fahclient_7.6.21_amd64.deb \
     && wget -c https://download.foldingathome.org/releases/public/release/fahcontrol/debian-stable-64bit/v7.6/fahcontrol_7.6.21-1_all.deb \
     && ar vx fahclient_7.6.21_amd64.deb \
     && tar -xvf control.tar.xz \
