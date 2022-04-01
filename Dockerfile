@@ -5,8 +5,6 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 RUN apt-get -qqy update \
     && apt-get -qqy --no-install-recommends install \
-        software-properties-common \
-        gnome-system-monitor \
         xfce4-terminal \
         binutils \
         gdebi \
@@ -61,8 +59,8 @@ RUN apt-get -qqy update \
 #============================
 FROM ubuntu-utilities as ubuntu-ui
 
-ENV SCREEN_WIDTH=1280 \
-    SCREEN_HEIGHT=600 \
+ENV SCREEN_WIDTH=1368 \
+    SCREEN_HEIGHT=620 \
     SCREEN_DEPTH=24 \
     SCREEN_DPI=96 \
     DISPLAY=:99 \
