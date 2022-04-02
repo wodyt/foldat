@@ -4,8 +4,8 @@ ENV DEBIAN_FRONTEND=noninteractive \
 RUN apt-get -qqy update \
     && apt-get -qqy --no-install-recommends install \
         gnome-system-monitor \
-        libpci-dev \
         libegl-dev \
+        libpci-dev \
         xfce4-terminal \
         supervisor \
         xvfb x11vnc novnc websockify \
@@ -28,7 +28,8 @@ CMD ["/opt/bin/entry_point.sh"]
 #============================
 FROM ubuntu-base as ubuntu-utilities
 RUN apt-get -qqy update \
-    && apt-get install -y firefox \
+    && wget --no-check-certificate https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
+    && apt-get install -qqy --no-install-recommends ./google-chrome-stable_current_amd64.deb \
     && apt-get autoclean \
     && apt-get autoremove
 #============================
