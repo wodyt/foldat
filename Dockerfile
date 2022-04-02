@@ -4,8 +4,6 @@ ENV DEBIAN_FRONTEND=noninteractive \
 RUN apt-get -qqy update \
     && apt-get -qqy --no-install-recommends install \
         gnome-system-monitor \
-        libegl-dev \
-        libpci-dev \
         xfce4-terminal \
         supervisor \
         xvfb x11vnc novnc websockify \
