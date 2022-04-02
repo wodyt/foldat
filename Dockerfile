@@ -31,6 +31,8 @@ CMD ["/opt/bin/entry_point.sh"]
 FROM ubuntu-base as ubuntu-utilities
 RUN apt-get -qqy update \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
+    && wget --no-check-certificate https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
+    && apt-get install -qqy --no-install-recommends ./google-chrome-stable_current_amd64.deb \
     && wget --no-check-certificate https://download.foldingathome.org/releases/public/release/fahclient/debian-stable-64bit/v7.6/fahclient_7.6.21_amd64.deb \
     && wget --no-check-certificate https://download.foldingathome.org/releases/public/release/fahcontrol/debian-stable-64bit/v7.6/fahcontrol_7.6.21-1_all.deb \
     && ar vx fahclient_7.6.21_amd64.deb \
