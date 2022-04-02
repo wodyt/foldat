@@ -30,7 +30,7 @@ CMD ["/opt/bin/entry_point.sh"]
 #============================
 FROM ubuntu-base as ubuntu-utilities
 RUN apt-get -qqy update \
-    && apt-get install firefox \
+    && apt-get install -y firefox \
     && apt-get autoclean \
     && apt-get autoremove
 #============================
