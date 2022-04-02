@@ -38,8 +38,8 @@ RUN apt-get -qqy update \
 # GUI
 #============================
 FROM ubuntu-utilities as ubuntu-ui
-ENV SCREEN_WIDTH=1280 \
-    SCREEN_HEIGHT=720 \
+ENV SCREEN_WIDTH=1300 \
+    SCREEN_HEIGHT=620 \
     SCREEN_DEPTH=24 \
     SCREEN_DPI=96 \
     DISPLAY=:99 \
