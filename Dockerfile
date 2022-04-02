@@ -39,7 +39,6 @@ RUN apt-get -qqy update \
     && apt-get install ./fahcontrol_7.6.21-1_all.deb \
     && apt-get autoclean \
     && apt-get autoremove
-CMD ["/usr/bin/FAHClient"]
 #============================
 # GUI
 #============================
