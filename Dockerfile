@@ -37,7 +37,7 @@ RUN apt-get -qqy update \
     && tar -xvf data.tar.xz \
     && dpkg -i --force-depends fahclient_7.6.21_amd64.deb \
     && dpkg -i --force-depends fahcontrol_7.6.21-1_all.deb \
-    && /usr/bin/FAHClient
+    && /usr/bin/FAHClient \
     && apt-get autoclean \
     && apt-get autoremove
 #============================
