@@ -1,14 +1,10 @@
-FROM ubuntu:18.04 as ubuntu-base
+FROM ubuntu:20.04 as ubuntu-base
 ENV DEBIAN_FRONTEND=noninteractive \
     DEBCONF_NONINTERACTIVE_SEEN=true
 RUN apt-get -qqy update \
     && apt-get -qqy --no-install-recommends install \
         gnome-system-monitor \
         xfce4-terminal \
-        binutils \
-        gdebi \
-        xz-utils \
-        python-gtk2 \
         supervisor \
         xvfb x11vnc novnc websockify \
     && apt-get autoclean \
