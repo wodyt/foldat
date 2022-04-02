@@ -3,6 +3,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
     DEBCONF_NONINTERACTIVE_SEEN=true
 RUN apt-get -qqy update \
     && apt-get -qqy --no-install-recommends install \
+        gnome-system-monitor \
         xfce4-terminal \
         binutils \
         gdebi \
