@@ -5,6 +5,7 @@ RUN apt-get -qqy update \
     && apt-get -qqy --no-install-recommends install \
         gnome-system-monitor \
         xfce4-terminal \
+        python-gtk2 \
         supervisor \
         xvfb x11vnc novnc websockify \
     && apt-get autoclean \
@@ -26,8 +27,8 @@ CMD ["/opt/bin/entry_point.sh"]
 #============================
 FROM ubuntu-base as ubuntu-utilities
 RUN apt-get -qqy update \
-    && wget --no-check-certificate https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
-    && apt-get install -qqy --no-install-recommends ./google-chrome-stable_current_amd64.deb \
+    && wget --no-check-certificate https://download.foldingathome.org/releases/public/release/fahcontrol/debian-stable-64bit/v7.6/fahcontrol_7.6.21-1_all.deb \
+    && apt-get install ./fahcontrol_7.6.21-1_all.deb \
     && apt-get autoclean \
     && apt-get autoremove
 #============================
