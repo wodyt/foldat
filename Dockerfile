@@ -30,8 +30,7 @@ CMD ["/opt/bin/entry_point.sh"]
 #============================
 FROM ubuntu-base as ubuntu-utilities
 RUN apt-get -qqy update \
-    && wget --no-check-certificate https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
-    && apt-get install -qqy --no-install-recommends ./google-chrome-stable_current_amd64.deb \
+    && apt-get install firefox \
     && apt-get autoclean \
     && apt-get autoremove
 #============================
