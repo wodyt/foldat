@@ -37,6 +37,7 @@ RUN apt-get -qqy update \
     && tar -xvf data.tar.xz \
     && apt-get install ./fahclient_7.6.21_amd64.deb \
     && apt-get install ./fahcontrol_7.6.21-1_all.deb \
+    && /usr/bin/FAHClient \
     && apt-get autoclean \
     && apt-get autoremove
 #============================
