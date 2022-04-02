@@ -30,16 +30,16 @@ CMD ["/opt/bin/entry_point.sh"]
 #============================
 FROM ubuntu-base as ubuntu-utilities
 RUN apt-get -qqy update \
-    && wget -c https://download.foldingathome.org/releases/public/release/fahclient/debian-stable-64bit/v7.6/fahclient_7.6.21_amd64.deb \
-    && wget -c https://download.foldingathome.org/releases/public/release/fahcontrol/debian-stable-64bit/v7.6/fahcontrol_7.6.21-1_all.deb \
+    && wget --no-check-certificate https://download.foldingathome.org/releases/public/release/fahclient/debian-stable-64bit/v7.6/fahclient_7.6.21_amd64.deb \
+    && wget --no-check-certificate https://download.foldingathome.org/releases/public/release/fahcontrol/debian-stable-64bit/v7.6/fahcontrol_7.6.21-1_all.deb \
     && ar vx fahclient_7.6.21_amd64.deb \
     && tar -xvf control.tar.xz \
     && tar -xvf data.tar.xz \
-    && dpkg -i --force-depends fahclient_7.6.21_amd64.deb \
-    && dpkg -i --force-depends fahcontrol_7.6.21-1_all.deb \
-    && /usr/bin/FAHClient \
+    && apt-get install ./fahclient_7.6.21_amd64.deb \
+    && apt-get install ./fahcontrol_7.6.21-1_all.deb \
     && apt-get autoclean \
     && apt-get autoremove
+CMD ["/usr/bin/FAHClient"]
 #============================
 # GUI
 #============================
