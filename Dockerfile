@@ -32,15 +32,7 @@ RUN apt-get -qqy update \
     && wget --no-check-certificate https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
     && apt-get install -qqy --no-install-recommends ./google-chrome-stable_current_amd64.deb \
     && apt-get autoclean \
-    && apt-get autoremove \
-    && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
-    && wget -c https://download.foldingathome.org/releases/public/release/fahclient/debian-stable-64bit/v7.6/fahclient_7.6.21_amd64.deb \
-    && wget -c https://download.foldingathome.org/releases/public/release/fahcontrol/debian-stable-64bit/v7.6/fahcontrol_7.6.21-1_all.deb \
-    && ar vx fahclient_7.6.21_amd64.deb \
-    && tar -xvf control.tar.xz \
-    && tar -xvf data.tar.xz \
-    && dpkg -i --force-depends fahclient_7.6.21_amd64.deb \
-    && dpkg -i --force-depends fahcontrol_7.6.21-1_all.deb
+    && apt-get autoremove
 #============================
 # GUI
 #============================
